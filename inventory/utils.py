@@ -8,3 +8,6 @@ def handle_rate_limit():
 
 def deplete_inventory():
     print("depleeting inventory")
+
+def capture_inventory_snapshot():
+    print("evaluating inventory snapshot")
