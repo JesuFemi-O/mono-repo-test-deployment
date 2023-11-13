@@ -1,0 +1,57 @@
+name: Deploy Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_inventory:
+    runs-on: ubuntu-latest
+
+    env:
+      INVENTORY_ENV_VAR_1: ${{ secrets.INVENTORY_ENV_VAR_1}}
+      INVENTORY_ENV_VAR_2: ${{ secrets.INVENTORY_ENV_VAR_2}}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11
+
+    - name: Deploy inventory subfolder
+      if: "contains(github.event.head_commit.added, 'inventory/') || contains(github.event.head_commit.modified, 'inventory/')"
+      working-directory: inventory
+      run: |
+        echo "Deploying contents of inventory subfolder..."
+        # Add your deployment script or commands for the 'inventory/' subfolder here
+        echo "Inventory Environment Variable 1: $INVENTORY_ENV_VAR_1"
+        echo "Inventory Environment Variable 2: $INVENTORY_ENV_VAR_2"
+
+  deploy_sales:
+    runs-on: ubuntu-latest
+
+    env:
+      SALES_ENV_VAR_1: ${{ secrets.SALES_ENV_VAR_1}}
+      SALES_ENV_VAR_2: ${{ secrets.SALES_ENV_VAR_2}}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11
+
+    - name: Deploy sales subfolder
+      if: "contains(github.event.head_commit.added, 'sales/') || contains(github.event.head_commit.modified, 'sales/')"
+      working-directory: sales
+      run: |
+        echo "Deploying contents of sales subfolder..."
+        # Add your deployment script or commands for the 'sales/' subfolder here
+        echo "Sales Environment Variable 1: $SALES_ENV_VAR_1"
+        echo "Sales Environment Variable 2: $SALES_ENV_VAR_2"
