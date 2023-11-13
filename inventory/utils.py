@@ -5,3 +5,6 @@ def call_api():
 
 def handle_rate_limit():
     print("handling throttle rate limits from api...")
+
+def deplete_inventory():
+    print("depleeting inventory")
