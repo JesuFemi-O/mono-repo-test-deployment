@@ -29,3 +29,5 @@ deploy_sales:
         # Add your deployment script or commands for the 'sales/' subfolder here
         echo "Sales Environment Variable 1: $SALES_ENV_VAR_1"
         echo "Sales Environment Variable 2: $SALES_ENV_VAR_2"
+        cd sales/
+        python sales_api.py
