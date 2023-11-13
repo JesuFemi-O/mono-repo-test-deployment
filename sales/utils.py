@@ -8,3 +8,6 @@ def update_inventory_levels():
 
 def create_adhoc_sales_report():
     print("creating adhoc sales report on request..")
+
+def call_pricing_service():
+    print("calling price api")
