@@ -30,6 +30,7 @@ jobs:
         # Add your deployment script or commands for the 'inventory/' subfolder here
         echo "Inventory Environment Variable 1: $INVENTORY_ENV_VAR_1"
         echo "Inventory Environment Variable 2: $INVENTORY_ENV_VAR_2"
+        python inventory_api.py
 
   deploy_sales:
     runs-on: ubuntu-latest
