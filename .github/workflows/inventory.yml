@@ -1,0 +1,34 @@
+name: Deploy Inventory Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'inventory/**'
+
+jobs:
+  deploy_inventory:
+    runs-on: ubuntu-latest
+
+    env:
+      INVENTORY_ENV_VAR_1: ${{ secrets.INVENTORY_ENV_VAR_1}}
+      INVENTORY_ENV_VAR_2: ${{ secrets.INVENTORY_ENV_VAR_2}}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11
+
+    - name: Deploy inventory subfolder
+      run: |
+        echo "Deploying contents of inventory subfolder..."
+        # Add your deployment script or commands for the 'inventory/' subfolder here
+        echo "Inventory Environment Variable 1: $INVENTORY_ENV_VAR_1"
+        echo "Inventory Environment Variable 2: $INVENTORY_ENV_VAR_2"
+        cd inventory/
+        python inventory_api.py
